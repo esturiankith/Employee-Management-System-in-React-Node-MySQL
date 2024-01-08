@@ -25,7 +25,7 @@ const Dashboard = () => {
               className="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-white text-decoration-none"
             >
               <span className="fs-5 fw-bolder d-none d-sm-inline">
-                Code With Yousof
+                RAI employee portal
               </span>
             </Link>
             <ul
@@ -52,22 +52,23 @@ const Dashboard = () => {
                   </span>
                 </Link>
               </li>
-              <li className="w-100">
-                <Link
-                  to="/dashboard/category"
-                  className="nav-link px-0 align-middle text-white"
-                >
-                  <i className="fs-4 bi-columns ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">Category</span>
-                </Link>
-              </li>
+              
               <li className="w-100">
                 <Link
                   to="/dashboard/profile"
                   className="nav-link px-0 align-middle text-white"
                 >
                   <i className="fs-4 bi-person ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">Profile</span>
+                  <span className="ms-2 d-none d-sm-inline">Employee Graviences</span>
+                </Link>
+              </li>
+              <li className="w-100">
+                <Link
+                to="/dashboard/leaveApplication"
+                className="nav-link px-0 allign-middle text-white"
+                  >
+                   <i class="bi bi-window-split"></i>
+                    <span className="ms-2 d-done d-sm-inline">Leave Applications</span>
                 </Link>
               </li>
               <li className="w-100" onClick={handleLogout}>
@@ -83,7 +84,7 @@ const Dashboard = () => {
         </div>
         <div className="col p-0 m-0">
             <div className="p-2 d-flex justify-content-center shadow">
-                <h4>Emoployee Management System</h4>
+                <h4>Employee Management System</h4>
             </div>
             <Outlet />
         </div>

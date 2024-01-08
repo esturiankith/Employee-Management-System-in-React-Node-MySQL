@@ -4,18 +4,18 @@ import { useNavigate } from "react-router-dom";
 
 const AddEmployee = () => {
   const [employee, setEmployee] = useState({
-    name: "",
+    empID:"",
+    empFirstName: "",
+    empLastName:"",
     email: "",
     password: "",
-    salary: "",
     address: "",
-    category_id: "",
-    image: "",
+
   });
   const [category, setCategory] = useState([]);
   const navigate = useNavigate()
 
-  useEffect(() => {
+ /* useEffect(() => {
     axios
       .get("http://localhost:3000/auth/category")
       .then((result) => {
@@ -26,20 +26,20 @@ const AddEmployee = () => {
         }
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, []);*/
 
   const handleSubmit = (e) => {
     e.preventDefault()
     const formData = new FormData();
-    formData.append('name', employee.name);
-    formData.append('email', employee.email);
-    formData.append('password', employee.password);
+    formData.append('empID', employee.empID);
+    formData.append('empFirstName', employee.empFirstName);
+    formData.append('empLastName', employee.empLastName);
     formData.append('address', employee.address);
-    formData.append('salary', employee.salary);
-    formData.append('image', employee.image);
-    formData.append('category_id', employee.category_id);
+    formData.append('empEmailId',employee.empEmailId);
+    formData.append('passowrd',employee.password);
 
-    axios.post('http://localhost:3000/auth/add_employee', formData)
+
+    axios.post('https://localhost:8080/employeeportal/addemployee', formData)
     .then(result => {
         if(result.data.Status) {
             navigate('/dashboard/employee')
@@ -57,7 +57,7 @@ const AddEmployee = () => {
         <form className="row g-1" onSubmit={handleSubmit}>
           <div className="col-12">
             <label for="inputName" className="form-label">
-              Name
+              enter the first name
             </label>
             <input
               type="text"
@@ -65,7 +65,35 @@ const AddEmployee = () => {
               id="inputName"
               placeholder="Enter Name"
               onChange={(e) =>
-                setEmployee({ ...employee, name: e.target.value })
+                setEmployee({ ...employee, empFirstName: e.target.value })
+              }
+            />
+          </div>
+          <div className="col-12">
+            <label for="inputName" className="form-label">
+              enter the last name
+            </label>
+            <input
+              type="text"
+              className="form-control rounded-0"
+              id="inputName"
+              placeholder="Enter Name"
+              onChange={(e) =>
+                setEmployee({ ...employee, empLastName: e.target.value })
+              }
+            />
+          </div>
+          <div className="col-12">
+            <label for="inputName" className="form-label">
+              enter the employee ID
+            </label>
+            <input
+              type="text"
+              className="form-control rounded-0"
+              id="inputName"
+              placeholder="Enter Name"
+              onChange={(e) =>
+                setEmployee({ ...employee, empID: e.target.value })
               }
             />
           </div>
@@ -80,7 +108,7 @@ const AddEmployee = () => {
               placeholder="Enter Email"
               autoComplete="off"
               onChange={(e) =>
-                setEmployee({ ...employee, email: e.target.value })
+                setEmployee({ ...employee, empEmailId: e.target.value })
               }
             />
           </div>
@@ -97,19 +125,6 @@ const AddEmployee = () => {
                 setEmployee({ ...employee, password: e.target.value })
               }
             />
-            <label for="inputSalary" className="form-label">
-              Salary
-            </label>
-            <input
-              type="text"
-              className="form-control rounded-0"
-              id="inputSalary"
-              placeholder="Enter Salary"
-              autoComplete="off"
-              onChange={(e) =>
-                setEmployee({ ...employee, salary: e.target.value })
-              }
-            />
           </div>
           <div className="col-12">
             <label for="inputAddress" className="form-label">
@@ -124,29 +139,6 @@ const AddEmployee = () => {
               onChange={(e) =>
                 setEmployee({ ...employee, address: e.target.value })
               }
-            />
-          </div>
-          <div className="col-12">
-            <label for="category" className="form-label">
-              Category
-            </label>
-            <select name="category" id="category" className="form-select"
-                onChange={(e) => setEmployee({...employee, category_id: e.target.value})}>
-              {category.map((c) => {
-                return <option value={c.id}>{c.name}</option>;
-              })}
-            </select>
-          </div>
-          <div className="col-12 mb-3">
-            <label className="form-label" for="inputGroupFile01">
-              Select Image
-            </label>
-            <input
-              type="file"
-              className="form-control rounded-0"
-              id="inputGroupFile01"
-              name="image"
-              onChange={(e) => setEmployee({...employee, image: e.target.files[0]})}
             />
           </div>
           <div className="col-12">
